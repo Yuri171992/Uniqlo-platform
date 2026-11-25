@@ -114,12 +114,22 @@ footer {
     <p class="switch" onclick="showRegister()">Create an account</p>
   </div>
 
-  <div class="card hidden" id="dashboard">
-    <h2>Welcome, <span id="memberName"></span>!</h2>
-    <p>Your member dashboard is ready.</p>
-    <p>Member status: Registered demo</p>
-    <button onclick="logout()">LOG OUT</button>
-  </div>
+  
+<div class="card hidden" id="dashboard">
+  <h2>Welcome, <span id="memberName"></span>!</h2>
+  <p>Your member dashboard is ready.</p>
+  <p>Member status: Registered demo</p>
+  <button onclick="showProfile()">MY PROFILE</button>
+  <button onclick="logout()">LOG OUT</button>
+</div>
+
+<div class="card hidden" id="profile">
+  <h2>MY PROFILE</h2>
+  <p>Name: <span id="profileName"></span></p>
+  <p>Email: <span id="profileEmail"></span></p>
+  <button onclick="backToDashboard()">BACK</button>
+</div>
+
 </div>
 
 <footer>
@@ -171,7 +181,19 @@ function showDashboard() {
   document.getElementById("dashboard").classList.remove("hidden");
   document.getElementById("memberName").textContent = member.name;
 }
+function showProfile() {
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("profile").classList.remove("hidden");
 
+  document.getElementById("profileName").textContent = member.name;
+  document.getElementById("profileEmail").textContent = member.email;
+}
+
+function backToDashboard() {
+  document.getElementById("profile").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+}
+ 
 function logout() {
   document.getElementById("dashboard").classList.add("hidden");
   document.getElementById("register").classList.remove("hidden");
