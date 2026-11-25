@@ -1,4 +1,4 @@
-
+Ko
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,6 +177,11 @@ function logout() {
   document.getElementById("register").classList.remove("hidden");
 }
 </script>
-
+<div id="profile" style="display:none; padding:20px;">
+  <h2>Member Profile</h2>
+  <p>Welcome to your uniqlo account!</p>
+  <p>Member Status: Registered</p>
+  <button onclick="document.getElementById('profile').style.display='none'">Close Profile</button>
+</div>
 </body>
 </html>
