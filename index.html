@@ -1,1 +1,182 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniqlo Platform Demo</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+header {
+  background: white;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+.logo {
+  color: #e60012;
+  font-size: 27px;
+  font-weight: bold;
+}
+header span { font-size: 12px; color: #666; }
+.hero {
+  background: #e60012;
+  color: white;
+  padding: 45px 20px;
+  text-align: center;
+}
+.hero h1 { font-size: 30px; margin: 0 0 12px; }
+.hero p { line-height: 1.5; }
+.container {
+  max-width: 430px;
+  margin: 25px auto;
+  padding: 22px;
+}
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px #00000012;
+}
+h2 { text-align: center; }
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 9px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  background: #e60012;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+}
+.switch {
+  text-align: center;
+  color: #e60012;
+  cursor: pointer;
+  margin-top: 18px;
+}
+.hidden { display: none; }
+#dashboard { text-align: center; }
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UNIQLO</div>
+  <span>INDEPENDENT DEMO</span>
+</header>
+
+<section class="hero">
+  <h1>Welcome to Your Style</h1>
+  <p>Discover a simple and comfortable member experience.</p>
+</section>
+
+<div class="container">
+  <div class="card" id="register">
+    <h2>Create Account</h2>
+    <input id="name" placeholder="Full name">
+    <input id="email" type="email" placeholder="Email address">
+    <input id="password" type="password" placeholder="Create password">
+    <input id="invite" placeholder="Invitation code (optional)">
+    <button onclick="registerUser()">REGISTER</button>
+    <p class="switch" onclick="showLogin()">Already have an account? Login</p>
+  </div>
+
+  <div class="card hidden" id="login">
+    <h2>Member Login</h2>
+    <input id="loginEmail" type="email" placeholder="Email address">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <button onclick="loginUser()">LOGIN</button>
+    <p class="switch" onclick="showRegister()">Create an account</p>
+  </div>
+
+  <div class="card hidden" id="dashboard">
+    <h2>Welcome, <span id="memberName"></span>!</h2>
+    <p>Your member dashboard is ready.</p>
+    <p>Member status: Registered demo</p>
+    <button onclick="logout()">LOG OUT</button>
+  </div>
+</div>
+
+<footer>
+  Independent demonstration project. Not affiliated with UNIQLO.
+  <br>Prototype only — no real accounts or payments.
+</footer>
+
+<script>
+let member = null;
+
+function showLogin() {
+  document.getElementById("register").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
+}
+
+function showRegister() {
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("register").classList.remove("hidden");
+}
+
+function registerUser() {
+  const n = document.getElementById("name").value.trim();
+  const e = document.getElementById("email").value.trim();
+  const p = document.getElementById("password").value;
+
+  if (!n || !e || !p) {
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  member = {name:n, email:e, password:p};
+  showDashboard();
+}
+
+function loginUser() {
+  const e = document.getElementById("loginEmail").value;
+  const p = document.getElementById("loginPassword").value;
+
+  if (member && member.email === e && member.password === p) {
+    showDashboard();
+  } else {
+    alert("Demo account not found. Please register first.");
+  }
+}
+
+function showDashboard() {
+  document.getElementById("register").classList.add("hidden");
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+  document.getElementById("memberName").textContent = member.name;
+}
+
+function logout() {
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("register").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
