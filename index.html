@@ -118,7 +118,8 @@ footer {
     <h2>Welcome, <span id="memberName"></span>!</h2>
     <p>Your member dashboard is ready.</p>
     <p>Member status: Registered demo</p>
-    <button onclick="logout()">LOG OUT</button>
+    <button onclick="showProfile()">MY PROFILE</button>
+<button onclick="logout()">LOG OUT</button> 
   </div>
 </div>
 
@@ -126,7 +127,9 @@ footer {
   Independent demonstration project. Not affiliated with UNIQLO.
   <br>Prototype only — no real accounts or payments.
 </footer>
-
+function showProfile() {
+  alert("Welcome to your uniqlo Member Profile!");
+}
 <script>
 let member = null;
 
